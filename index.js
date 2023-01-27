@@ -19,7 +19,7 @@ const generateText = async () => {
       max_tokens: 2048,
       temperature: 1,
     });
-    console.log(response.data.choices[0].text);
+
     let result = response.data.choices[0].text;
 
 
@@ -48,9 +48,3 @@ const generateText = async () => {
   }
 };
 
-
-
-const quote = generateText();
-console.log(quote);
-
-console.log("hello");
