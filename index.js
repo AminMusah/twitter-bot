@@ -24,10 +24,10 @@ const generateText = async () => {
     console.log(result)
 
     
-   setInterval(function () {
+  //  setInterval(function () {
       // code to be executed every 24 hours
       tweet(result);
-    }, 86400000);
+    // }, 86400000);
 
   } catch (error) {
     if (error.response) {
