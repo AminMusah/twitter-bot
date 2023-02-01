@@ -1,6 +1,7 @@
 const rwClient = require("./twitterClient");
 require("dotenv").config();
 const { Configuration, OpenAIApi } = require("openai");
+let CronJob = require("cron").CronJob;
 
 const configuration = new Configuration({
   apiKey: process.env.OPEN_AI_KEY,
@@ -21,14 +22,15 @@ const generateText = async () => {
     });
 
     let result = response.data.choices[0].text;
-    console.log(result)
 
-    
-   setInterval(function () {
-      // code to be executed every 24 hours
+    console.log(result);
+
+    let job = new CronJob("* */12 * * *", async () => {
       tweet(result);
-    }, 43200000);
+      console.log(result);
+    });
 
+    job.start();
   } catch (error) {
     if (error.response) {
       console.log(error.response.status);
@@ -39,16 +41,15 @@ const generateText = async () => {
   }
 };
 
-generateText()
+generateText();
 
-  //Tweet
-  const tweet = async (text) => {
-    try {
-      await rwClient.v2.tweet({
-        text: text,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+//Tweet
+const tweet = async (text) => {
+  try {
+    await rwClient.v2.tweet({
+      text: text,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
