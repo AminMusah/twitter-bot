@@ -27,7 +27,7 @@ const generateText = async () => {
    setInterval(function () {
       // code to be executed every 24 hours
       tweet(result);
-    }, 86400000);
+    }, 43200000);
 
   } catch (error) {
     if (error.response) {
