@@ -21,23 +21,14 @@ const generateText = async () => {
     });
 
     let result = response.data.choices[0].text;
+    console.log(result)
 
-
-    //Tweet
-    const tweet = async () => {
-      try {
-        await rwClient.v2.tweet({
-          text: result,
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    setInterval(function () {
+    
+   setInterval(function () {
       // code to be executed every 24 hours
-      tweet();
+      tweet(result);
     }, 86400000);
+
   } catch (error) {
     if (error.response) {
       console.log(error.response.status);
@@ -47,4 +38,20 @@ const generateText = async () => {
     }
   }
 };
+
+generateText()
+
+  //Tweet
+  const tweet = async (text) => {
+    try {
+      await rwClient.v2.tweet({
+        text: text,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+console.log('hello')
 
