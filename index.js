@@ -23,11 +23,8 @@ const generateText = async () => {
 
     let result = response.data.choices[0].text;
 
-    console.log(result);
-
-    let job = new CronJob("* */12 * * *", async () => {
+    let job = new CronJob("* */1 * * *", () => {
       tweet(result);
-      console.log(result);
     });
 
     job.start();
