@@ -23,6 +23,8 @@ const generateText = async () => {
 
     let result = response.data.choices[0].text;
 
+    console.log(result)
+
     tweet(result);
 
   } catch (error) {
@@ -35,7 +37,7 @@ const generateText = async () => {
   }
 };
 
-let job = new CronJob("0 0 * * *", () => {
+let job = new CronJob("10 * * * * *", () => {
   generateText();
 });
 
