@@ -37,14 +37,12 @@ const generateText = async () => {
   }
 };
 
-// let job = new CronJob("10 * * * * *", () => {
-// });
-
-setInterval(()=>{
+let job = new CronJob("10 * * * * *", () => {
   generateText();
-},10000)
+});
 
-// job.start();
+
+job.start();
 
 
 //Tweet
