@@ -37,7 +37,8 @@ const generateText = async () => {
   }
 };
 
-let job = new CronJob("10 * * * * *", () => {
+//Running task every 24 hours
+let job = new CronJob(" 0 0 * * *", () => {
   generateText();
 });
 
